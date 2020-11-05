@@ -1,10 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+
+
 from matplotlib import pyplot
 import matplotlib
 import matplotlib.pyplot as plt
@@ -23,8 +20,6 @@ from random import randint, shuffle
 import os
 import seaborn as sns
 
-
-# In[2]:
 
 
 train_data = pd.read_csv('Downloads/インテグ課題/NASA/prehackathonsup/train_data/train_data.csv')
