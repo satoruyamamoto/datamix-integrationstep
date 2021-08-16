@@ -1,25 +1,25 @@
-# ƒf[ƒ^‚Ì“Ç‚İ‚İ ‰Šú‚Ìƒf[ƒ^
+# ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ åˆæœŸã®ãƒ‡ãƒ¼ã‚¿
 train_data<-read.csv("prehackathonsup/train_data/train_data.csv")
 test_data<-read.csv("prehackathonsup/test_data/test_data.csv")
 head(train_data)
 head(test_data)
 
-# ƒf[ƒ^‚Ì‘S‘Ì‘œ‚ğ‚Â‚©‚Ş
+# ãƒ‡ãƒ¼ã‚¿ã®å…¨ä½“åƒã‚’ã¤ã‹ã‚€
 summary(train_data)
 summary(test_data)
 
-# —ñ–¼‚Ìˆê——
+# åˆ—åã®ä¸€è¦§
 colnames(train_data)
 colnames(test_data)
-# train_data‚Ætest_data‚Ì—ñ‚Í"RUL"‚ğœ‚«“¯‚¶
+# train_dataã¨test_dataã®åˆ—ã¯"RUL"ã‚’é™¤ãåŒã˜
 
-#s”E—ñ”
+#è¡Œæ•°ãƒ»åˆ—æ•°
 dim(train_data)
 dim(test_data)
 
 
-# ˆÈ‰º‚Ítrain_data‚Åì‹Æ‚·‚é
-# engine_no‚²‚Æ‚Ìƒf[ƒ^‚ğ’Šo
+# ä»¥ä¸‹ã¯train_dataã§ä½œæ¥­ã™ã‚‹
+# engine_noã”ã¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’æŠ½å‡º
 
 k<-0
 for (i in 0:708) {
@@ -30,37 +30,37 @@ for (i in 0:708) {
 }
 
 
-# ƒqƒXƒgƒOƒ‰ƒ€
+# ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ 
 hist(train_data$sensor_1)
 
-# Ü‚êüƒOƒ‰ƒt
+# æŠ˜ã‚Œç·šã‚°ãƒ©ãƒ•
 plot_l_0 <- plot(train_data$time_in_cycles, train_data$sensor_1,type="l")
 plot_l_1 <- plot(train_data$time_in_cycles, train_data$sensor_21,type="l")
 
 
 
-# U•z} time_in_cycles‚ÆRUL
+# æ•£å¸ƒå›³ time_in_cyclesã¨RUL
 plot(train_data$time_in_cycles, train_data$RUL)
 
-# ƒf[ƒ^‚ÌÚ×Šm”F‚Ípython‚Ås‚Á‚Ä‚¢‚éBR‚Å‚Í‚±‚±‚©‚ç—\‘ªƒ‚ƒfƒ‹‚ğì¬‚·‚éB
+# ãƒ‡ãƒ¼ã‚¿ã®è©³ç´°ç¢ºèªã¯pythonã§è¡Œã£ã¦ã„ã‚‹ã€‚Rã§ã¯ã“ã“ã‹ã‚‰äºˆæ¸¬ãƒ¢ãƒ‡ãƒ«ã‚’ä½œæˆã™ã‚‹
 
 
-# R‚Å‚Ì¶‘¶ŠÔ‰ğÍ ŠÔˆË‘¶Œ^
-# event‚ğ—\‘ª‚·‚é
-# ƒf[ƒ^‚Ì“Ç‚İ‚İ ‰Šú‚Ìƒf[ƒ^
+# Rã§ã®ç”Ÿå­˜æ™‚é–“è§£æ æ™‚é–“ä¾å­˜å‹
+# eventã‚’äºˆæ¸¬ã™ã‚‹
+# ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ åˆæœŸã®ãƒ‡ãƒ¼ã‚¿
 train_data<-read.csv("prehackathonsup/train_data/train_data.csv")
 test_data<-read.csv("prehackathonsup/test_data/test_data.csv")
-# •K—v‚È‚¢—ñ(Nan)‚ğíœ
+# å¿…è¦ãªã„åˆ—(Nan)ã‚’å‰Šé™¤
 train_data <- train_data[,c(-27,-28,-29,-30,-31,-32)]
 test_data <- test_data[,c(-27,-28,-29,-30,-31,-32)]
-# event—ñ‚ğ’Ç‰Á@RUL<=100‚È‚ç‚Î1,100<RUL‚È‚ç‚Î0‚Æ‚·‚é
+# eventåˆ—ã‚’è¿½åŠ ã€€RUL<=100ãªã‚‰ã°1,100<RULãªã‚‰ã°0ã¨ã™ã‚‹
 train_data$event<-ifelse(train_data$RUL <= 100, 1,0)
 
-# I‚í‚è‚ÌŠÔstop‚ğ’Ç‰Átime_in_cycles‚ª1‚İ‚È‚Ì‚Åtime_in_cycles+1‚Æ‚·‚é
+# çµ‚ã‚ã‚Šã®æ™‚é–“stopã‚’è¿½åŠ time_in_cyclesãŒ1åˆ»ã¿ãªã®ã§time_in_cycles+1ã¨ã™ã‚‹
 train_data$stop <- train_data$time_in_cycles+1
 test_data$stop <- test_data$time_in_cycles+1
 
-# —\‘ªƒ‚ƒfƒ‹‚ğì¬‚·‚é
+# äºˆæ¸¬ãƒ¢ãƒ‡ãƒ«ã‚’ä½œæˆã™ã‚‹
 library(survival)
 
 Survival_event_time <- coxph(data=train_data,
@@ -73,10 +73,10 @@ Survival_event_time <- coxph(data=train_data,
 summary(Survival_event_time)
 
 
-# stepŠÖ”‚Åà–¾•Ï”‚ğ‘I‘ğ‚·‚é
+# stepé–¢æ•°ã§èª¬æ˜å¤‰æ•°ã‚’é¸æŠã™ã‚‹
 step(Survival_event_time)
 
-# Ä“xƒ‚ƒfƒ‹’è‹`
+# å†åº¦ãƒ¢ãƒ‡ãƒ«å®šç¾©
 Survival_event_time_step <- coxph(data=train_data,
                                   Surv(time_in_cycles, stop, event) ~ op_setting_1 + 
                                     op_setting_3 + sensor_1 + sensor_2 + sensor_3 + sensor_4 + 
@@ -85,96 +85,50 @@ Survival_event_time_step <- coxph(data=train_data,
                                     sensor_17 + sensor_18 + sensor_20 + sensor_21)
 
 
-#test_data‚Å—\‘ª‚·‚é
+#test_dataã§äºˆæ¸¬ã™ã‚‹
 pred_test_time_step = predict(Survival_event_time_step, 
                     newdata = test_data, 
                     type=c("lp"))
 
-#ã‹L‚Ì—\‘ªŒ‹‰Ê‚Ì—ñ‚ğ’Ç‰Á‚·‚é
+#ä¸Šè¨˜ã®äºˆæ¸¬çµæœã®åˆ—ã‚’è¿½åŠ ã™ã‚‹
 test_data$pred_test_time_step <- pred_test_time_step
 
 
-# event‚ª1‚É‚È‚éŠm—¦‚É•ÏŠ·‚µ‚ÄA—ñ‚ğ’Ç‰Á‚·‚é
+# eventãŒ1ã«ãªã‚‹ç¢ºç‡ã«å¤‰æ›ã—ã¦ã€åˆ—ã‚’è¿½åŠ ã™ã‚‹
 pred_test2_time_step <-1 / (1 + exp(-pred_test_time_step))
 test_data$pred_test2_time_step <- pred_test2_time_step
 
-# ã‹L‚Ì—\‘ªŒ‹‰Ê‚Íè‡’l‚É‚æ‚Á‚Ä•Ï‚í‚é‚Ì‚ÅA•¡”‚Ìè‡’l‚ğŒŸØ‚·‚éB
-# è‡’l‚ğ0.5‚Éİ’è
+# ä¸Šè¨˜ã®äºˆæ¸¬çµæœã¯é–¾å€¤ã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹ã®ã§ã€è¤‡æ•°ã®é–¾å€¤ã‚’æ¤œè¨¼ã™ã‚‹
+# é–¾å€¤ã‚’0.5ã«è¨­å®š
 pred_test2_time_step_flag<-ifelse(pred_test2_time_step > 0.5, 1, 0)
 test_data$pred_test2_time_step_flag<-pred_test2_time_step_flag
 hist(pred_test2_time_step_flag)
 
-# csv‚Åo—Í‚µ‚ÄApython‚Å¬‡s—ñ‚ğŠm”F‚·‚éB
+# csvã§å‡ºåŠ›ã—ã¦ã€pythonã§æ··åˆè¡Œåˆ—ã‚’ç¢ºèªã™ã‚‹
 write.csv(test_data, "test_data/test_data_R_time_step_0.5.csv")
 
 
-# è‡’l‚ğ0.4‚Éİ’è
+# é–¾å€¤ã‚’0.4ã«è¨­å®š
 pred_test2_time_step_flag<-ifelse(pred_test2_time_step > 0.4, 1, 0)
 test_data$pred_test2_time_step_flag<-pred_test2_time_step_flag
 hist(pred_test2_time_step_flag)
 
-# csv‚Åo—Í
+# csvã§å‡ºåŠ›ã—ã¦ã€pythonã§æ··åˆè¡Œåˆ—ã‚’ç¢ºèªã™ã‚‹
 write.csv(test_data, "test_data/test_data_R_time_step_0.4.csv")
 
-# è‡’l‚ğ0.6‚Éİ’è
+# é–¾å€¤ã‚’0.6ã«è¨­å®š
 pred_test2_time_step_flag<-ifelse(pred_test2_time_step > 0.6, 1, 0)
 test_data$pred_test2_time_step_flag<-pred_test2_time_step_flag
 hist(pred_test2_time_step_flag)
 
-# csv‚Åo—Í
+# csvã§å‡ºåŠ›ã—ã¦ã€pythonã§æ··åˆè¡Œåˆ—ã‚’ç¢ºèªã™ã‚‹
 write.csv(test_data, "test_data/test_data_R_time_step_0.6.csv")
 
 
-#survfitF¶‘¶‹Èü‚ğì¬‚·‚é
+#survfitï¼šç”Ÿå­˜æ›²ç·šã‚’ä½œæˆã™ã‚‹
 Survfit_event_time_step_test<-survfit(Survival_event_time_step,test_data)
 
 
-
-
-
-
-# confusion matrix‚ğì¬
-
-# testƒf[ƒ^‚ÌRUL‚ğ“Ç‚İ‚Ş
-test_data_RUL <- read.csv("prehackathonsup/RUL_test.csv")
-
-# —ñ‚Ì‡”Ô‚ğ“ü‚ê‘Ö‚¦‚Æíœ
-test_data_RUL.drop('Unnamed: 0', axis=1)
-test_data_RUL = test_data_RUL.loc[:,['engine_no','RUL']]
-test_data_RUL.head()
-
-# RUL<100‚ÌA‚Â‚Ü‚è—\‘ª‚µ‚½c‚è‚Ìõ–½ƒTƒCƒNƒ‹‚ª100‚æ‚è¬‚³‚¯‚ê‚Î1 ‚»‚êˆÈŠO‚Å0‚Æ‚·‚é
-test_data_RUL['result'] = test_data_RUL['RUL'].map(lambda x: 0 if x > 100 else 1)
-
-
-conf_mat<-table(test_data$y, ypred_test_flag)
-conf_mat
-attack_num<-conf_mat[3] + conf_mat[4]#‰Ë“d”
-expected_revenue<-conf_mat[4] * sales#”„‚èã‚°
-your_cost<-attack_num * cost
-roi = expected_revenue - your_cost
-print(roi)
-
-#ƒŠƒXƒg
-test_data$y_flag<-ypred_test_flag
-attac_list<-subset(test_data,y_flag==1)
-attac_list2<-attac_list[,"y_flag"]
-
-# ³‰ğ—¦
-accuracy<-(conf_mat[1] + conf_mat[4]) /(conf_mat[1] + conf_mat[2] + conf_mat[3] + conf_mat[4])
-accuracy
-
-# “K‡—¦(precision)
-precision<-conf_mat[4] / (conf_mat[3] + conf_mat[4])
-precision
-
-# ÄŒ»—¦(Recall)
-recall<-conf_mat[4]/ (conf_mat[2] + conf_mat[4]) 
-recall
-
-# F’l(F - Measure)
-f_measure <- 2*precision*recall/(precision+recall)
-f_measure
 
 
 
