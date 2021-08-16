@@ -19,8 +19,8 @@ dim(test_data)
 
 
 # 以下はtrain_dataで作業する
-# engine_noごとのデータを抽出
 
+# engine_noごとのデータを抽出
 k<-0
 for (i in 0:708) {
   nam <- paste("engine_",i,sep="")
@@ -29,7 +29,6 @@ for (i in 0:708) {
   k <- k+1
 }
 
-
 # ヒストグラム
 hist(train_data$sensor_1)
 
@@ -37,13 +36,12 @@ hist(train_data$sensor_1)
 plot_l_0 <- plot(train_data$time_in_cycles, train_data$sensor_1,type="l")
 plot_l_1 <- plot(train_data$time_in_cycles, train_data$sensor_21,type="l")
 
-
-
 # 散布図 time_in_cyclesとRUL
 plot(train_data$time_in_cycles, train_data$RUL)
 
-# データの詳細確認はpythonで行っている。Rではここから予測モデルを作成する
 
+
+# データの詳細確認はpythonで行っている。Rではここから予測モデルを作成する
 
 # Rでの生存時間解析 時間依存型
 # eventを予測する
@@ -72,7 +70,6 @@ Survival_event_time <- coxph(data=train_data,
 
 summary(Survival_event_time)
 
-
 # step関数で説明変数を選択する
 step(Survival_event_time)
 
@@ -93,10 +90,10 @@ pred_test_time_step = predict(Survival_event_time_step,
 #上記の予測結果の列を追加する
 test_data$pred_test_time_step <- pred_test_time_step
 
-
 # eventが1になる確率に変換して、列を追加する
 pred_test2_time_step <-1 / (1 + exp(-pred_test_time_step))
 test_data$pred_test2_time_step <- pred_test2_time_step
+
 
 # 上記の予測結果は閾値によって変わるので、複数の閾値を検証する
 # 閾値を0.5に設定
@@ -115,6 +112,7 @@ hist(pred_test2_time_step_flag)
 
 # csvで出力して、pythonで混合行列を確認する
 write.csv(test_data, "test_data/test_data_R_time_step_0.4.csv")
+
 
 # 閾値を0.6に設定
 pred_test2_time_step_flag<-ifelse(pred_test2_time_step > 0.6, 1, 0)
